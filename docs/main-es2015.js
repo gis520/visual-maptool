@@ -244,7 +244,7 @@ let MapComponent = class MapComponent {
                 icon: {
                     size: { width: 34, height: 34 },
                     imageSize: { width: 34, height: 34 },
-                    image: '/assets/images/map/warehouse.png'
+                    image: './assets/images/map/warehouse.png'
                 },
                 position: [116.397428, 39.90923]
             }
