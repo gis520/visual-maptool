@@ -1,0 +1,43 @@
+name: update github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v1.1.0
+        with:
+          node-version: "10.x"
+
+      - name: Git Clone
+        uses: actions/checkout@master
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Ng Build
+        run: node ./node_modules/@angular/cli/bin/ng build  --outputPath=dist --base-href=/visual-maptool/
+
+      - name: Git Init
+        run: |
+          cd ./dist
+          git init
+      - name: Git Commit
+        run: |
+          cd ./dist
+          git add .
+          git config user.email "zomixi@qq.com"
+          git config user.name "zomixi"
+          git commit -m "update github pages"
+      - name: Git Push
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          cd ./dist
+          git push --set-upstream --force --quiet "https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" master:gh-pages

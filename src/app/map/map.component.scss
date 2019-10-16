@@ -1,0 +1,120 @@
+.map-container {
+  position: relative;
+  .ngxmap {
+    height: 100%;
+  }
+}
+#driving-panel {
+  position: absolute;
+  width: 300px;
+  background: transparent;
+  right: 10px;
+  top: 120px;
+  height: 500px;
+  overflow-y: auto;
+}
+:host ::ng-deep {
+  .info-title {
+    color: white;
+    font-size: 14px;
+    background-color: #25a5f7;
+    line-height: 26px;
+    padding: 0px 0 0 6px;
+    font-weight: lighter;
+    letter-spacing: 1px;
+  }
+  .amap-info-content {
+    padding: 0;
+  }
+  .amap-info-close {
+    right: 10px !important;
+    color: #fff;
+  }
+  .info-card {
+    .content {
+      padding: 10px;
+    }
+    .operate {
+      border-bottom: #e4e4e4 solid 1px;
+      height: 25px;
+      .btn {
+        cursor: pointer;
+        color: #25a5f7;
+      }
+    }
+  }
+}
+
+.map-tool-bar {
+  position: absolute;
+  z-index: 600;
+  right: 20px;
+  top: 20px;
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 2px #aaa;
+  ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    margin: 0 0 0 15px;
+    > li {
+      float: left;
+      padding-left: 25px;
+      width: 60px;
+      height: 48px;
+      line-height: 50px;
+      background-position: 5px 17px;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: '微软雅黑';
+      color: #686c7e;
+    }
+  }
+  b {
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #fff;
+    margin-left: 15px;
+  }
+  .icon {
+    background-size: 16px 16px;
+  }
+  .circle {
+    background-image: url('/assets/images/map/circle.png');
+    &.active {
+      background-image: url('/assets/images/map/circle-active.png');
+      color: rgb(0, 49, 255);
+    }
+  }
+  .polygon {
+    background-image: url('/assets/images/map/polygon.png');
+    &.active {
+      background-image: url('/assets/images/map/polygon-active.png');
+      color: rgb(0, 49, 255);
+    }
+  }
+
+  .rect {
+    background-image: url('/assets/images/map/rectangle.png');
+    position: relative;
+    &.active {
+      background-image: url('/assets/images/map/rectangle-active.png');
+      position: relative;
+      color: rgb(0, 49, 255);
+    }
+  }
+  .draw-clean {
+    background-image: url('/assets/images/map/draw-clean.png');
+    position: relative;
+  }
+  .fitview {
+    background-image: url('/assets/images/map/fitview.png');
+    position: relative;
+  }
+  .driving-render {
+    background-image: url('/assets/images/map/driving-render.png');
+    position: relative;
+  }
+}

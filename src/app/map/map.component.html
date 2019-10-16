@@ -1,0 +1,52 @@
+<div class="map-container">
+  <div class="map-tool-bar">
+    <ul>
+      <li class="icon fitview" (click)="maptoolSrv.setFitView()">复位<b></b></li>
+      <li class="icon rect" [ngClass]="{ active: drawType === 'rectangle' }" (click)="draw('rectangle')">
+        方形<b></b>
+      </li>
+      <li class="icon circle" [ngClass]="{ active: drawType === 'circle' }" (click)="draw('circle')">圆形<b></b></li>
+      <li class="icon polygon" [ngClass]="{ active: drawType === 'polygon' }" (click)="draw('polygon')">
+        多边形<b></b>
+      </li>
+      <li class="icon draw-clean" (click)="closeDraw(true)">清除</li>
+      <li class="icon driving-render" (click)="driving()" style="color: #d81e06;font-weight: bold">路径规划</li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+  <ngx-amap class="ngxmap" [center]="centerPoint" [zoom]="13" [ngStyle]="{ height: maxHight }" [zooms]="[11, 18]">
+    <amap-tool-bar></amap-tool-bar>
+    <ng-container *ngFor="let p of markerPoints; index as i">
+      <amap-marker
+        [position]="p.position"
+        [label]="p.label"
+        [extData]="p.extData"
+        [icon]="p.icon"
+        [offset]="{ x: -12, y: -30 }"
+      >
+        <amap-info-window [offset]="{ x: 0, y: -30 }" *ngIf="!p.extData.isWareHouse">
+          <div class="info-card">
+            <div class="info-title">{{ p.extData?.waybillId }}</div>
+            <div class="header">
+              <div class="address"></div>
+              <div class="operate">
+                <span class="btn">二次预约</span>
+                <span class="btn">上午</span>
+              </div>
+            </div>
+            <div class="content">
+              <ul>
+                <li>地址：{{ p.extData?.address }}</li>
+                <li>方数：{{ p.extData?.volume }} m³</li>
+                <li>派单费：{{ p.extData?.diriverFee }} 元</li>
+                <li>品名：{{ p.extData?.goodName }}</li>
+                <li>备注：{{ p.extData?.remark }}</li>
+              </ul>
+            </div>
+          </div>
+        </amap-info-window>
+      </amap-marker>
+    </ng-container>
+  </ngx-amap>
+  <div id="driving-panel" class="panel"></div>
+</div>
